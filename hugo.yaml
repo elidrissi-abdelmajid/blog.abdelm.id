@@ -1,0 +1,50 @@
+baseURL: "http://localhost:1313/"
+languageCode: "en-us"
+title: "Abdelmajid El Idrissi"
+theme: "PaperMod"
+
+enableRobotsTXT: true
+
+params:
+  env: production
+  title: "Abdelmajid El Idrissi"
+  description: "Data Engineer | Big Data | Distributed Systems | Cloud"
+  author: "Abdelmajid El Idrissi"
+
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  ShowRssButtonInSectionTermList: true
+
+  homeInfoParams:
+    Title: "Hi, I'm Abdelmajid 👋"
+    Content: |
+      Data Engineer based in Casablanca, Morocco.
+
+      I write about Data Engineering, Apache Spark, PySpark,
+      Kafka, Airflow, distributed systems and cloud technologies.
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/elidrissi-abdelmajid"
+    - name: linkedin
+      url: "YOUR_LINKEDIN_URL"
+
+menu:
+  main:
+    - identifier: posts
+      name: Blog
+      url: /posts/
+      weight: 10
+    - identifier: projects
+      name: Projects
+      url: /projects/
+      weight: 20
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 30
