@@ -1,4 +1,4 @@
-baseURL: "http://localhost:1313/"
+baseURL: "https://www.linkedin.com/in/abdelamjid-elidrissi-45bb38231/?isSelfProfile=true"
 languageCode: "en-us"
 title: "Abdelmajid El Idrissi"
 theme: "PaperMod"
@@ -8,7 +8,7 @@ enableRobotsTXT: true
 params:
   env: production
   title: "Abdelmajid El Idrissi"
-  description: "Data Engineer | Big Data | Distributed Systems | Cloud"
+  description: "Data Engineer | Big Data | Distributed Systems "
   author: "Abdelmajid El Idrissi"
 
   defaultTheme: auto
@@ -32,7 +32,7 @@ params:
     - name: github
       url: "https://github.com/elidrissi-abdelmajid"
     - name: linkedin
-      url: "YOUR_LINKEDIN_URL"
+      url: "https://www.linkedin.com/in/abdelamjid-elidrissi-45bb38231/?isSelfProfile=true"
 
 menu:
   main:
