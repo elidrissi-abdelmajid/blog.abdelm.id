@@ -1,10 +1,5 @@
-# Spark : de 0 à expert — Blog 1/14
-## Pourquoi Spark ? Du Big Data au calcul distribué en mémoire
+## 1- Pourquoi Spark ? Du Big Data au calcul distribué en mémoire
 
-> **Série :** Spark de 0 à expert | **Niveau 1 : Fondations** | Blog 1 sur 14
-> **Temps de lecture :** ~8 min | **Prérequis :** aucun
-
-#Spark #ApacheSpark #BigData #DataEngineering #PySpark #Hadoop #MapReduce #DistributedComputing #SparkDeZeroAExpert
 
 ---
 
@@ -209,14 +204,6 @@ spark.stop()
 
 ---
 
-## 9. Prochain blog
-
-Tu sais maintenant **pourquoi** Spark existe et ce qui le rend rapide. Mais tout ça reste théorique tant que tu n'as pas un cluster sous les doigts.
-
-**👉 Blog 2 : Environnement de travail.**
-On monte un mini-cluster Spark avec **Docker Compose** (1 master + workers), on lance un notebook PySpark et on exécute notre première vraie `SparkSession`. Tu auras un environnement reproductible pour toute la série.
-
-*Question à garder en tête : combien de lignes de `docker-compose.yml` faut-il pour avoir un cluster Spark fonctionnel ?*
 
 ---
 
