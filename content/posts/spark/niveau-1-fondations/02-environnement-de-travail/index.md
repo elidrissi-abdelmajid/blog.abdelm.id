@@ -1,7 +1,6 @@
-# Spark : de 0 à expert — Blog 2/14
 ## Environnement de travail : Docker Compose, PySpark et ta première SparkSession
 
-> **Série :** Spark de 0 à expert | **Niveau 1 : Fondations** | Blog 2 sur 14
+> **Niveau 1 : Fondations** | Blog 2 sur 14
 > **Temps de lecture :** ~15 min | **Prérequis :** Blog 1, Docker Desktop (ou Docker Engine + Compose v2), 8 Go de RAM libres
 
 #Spark #ApacheSpark #PySpark #Docker #DockerCompose #Jupyter #DataEngineering #BigData #SparkDeZeroAExpert
@@ -40,7 +39,7 @@ C'est exactement le modèle du Blog 1 (driver + executors), mais en miniature.
 
 ## 2. Trois façons d'exécuter Spark
 
-![Les 3 modes d'exécution](images/02-trois-modes-execution.png)
+![Les 3 modes d'exécution](images/02-trois-modes-execution.svg)
 
 | Mode | `master` | Quand |
 |---|---|---|
@@ -263,28 +262,6 @@ Dans Jupyter, crée un notebook dans `work/` et complète ce squelette.
 ### 6.1 Squelette
 
 ```python
-from pyspark.sql import ______
-
-spark = (
-    SparkSession.builder
-    .appName("______")
-    .master("spark://______:7077")
-    .config("spark.driver.host", "______")          # nom du conteneur notebook
-    .config("spark.driver.bindAddress", "0.0.0.0")
-    .config("spark.executor.memory", "______")
-    .config("spark.cores.max", "______")
-    .getOrCreate()
-)
-
-print(spark.version)
-print(spark.sparkContext.master)
-print(spark.sparkContext.defaultParallelism)
-```
-
-<details>
-<summary>Solution</summary>
-
-```python
 from pyspark.sql import SparkSession
 
 spark = (
@@ -399,15 +376,9 @@ Sans regarder le blog, écris :
 
 Ton cluster tourne et tu sais lancer un job. Mais jusqu'ici on a utilisé `spark.range()` et des DataFrames sans vraiment demander : **qu'est-ce qu'un DataFrame ? En quoi diffère-t-il d'un RDD ?** Pourquoi `spark.range(10_000_000)` ne consomme-t-il pas de mémoire avant l'action ?
 
-**👉 Blog 3 : RDD, DataFrame, Dataset.**
-On ouvre le capot : lazy evaluation, immutabilité, lineage, et surtout quand utiliser quoi. On réutilisera ce cluster tel quel.
+
 
 ---
 
-**Série « Spark : de 0 à expert »**
-Niveau 1 : 1. Pourquoi Spark ? | **2. Environnement** ← tu es ici | 3. RDD, DataFrame, Dataset
-Niveau 2 : 4. I/O | 5. Transformations | 6. Joins & Windows | 7. SQL & UDF
-Niveau 3 : 8. Architecture | 9. spark-submit | 10. Jobs/Stages | 11. Catalyst
-Niveau 4 : 12. Scheduling | 13. Optimisation | 14. Production
 
 #Spark #ApacheSpark #PySpark #Docker #DockerCompose #Jupyter #LearnSpark #DataEngineer #SparkDeZeroAExpert
