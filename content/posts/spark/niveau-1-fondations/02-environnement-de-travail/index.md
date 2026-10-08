@@ -1,6 +1,12 @@
+---
+title: "Environnement de travail"
+description: "Big Data, Hadoop MapReduce vs Spark, calcul en mémoire, écosystème."
+weight: 1
+---
+
 ## Environnement de travail : Docker Compose, PySpark et ta première SparkSession
 
-> **Niveau 1 : Fondations** | Blog 2 sur 14
+> **Niveau 1 : Fondations** | 
 > **Temps de lecture :** ~15 min | **Prérequis :** Blog 1, Docker Desktop (ou Docker Engine + Compose v2), 8 Go de RAM libres
 
 #Spark #ApacheSpark #PySpark #Docker #DockerCompose #Jupyter #DataEngineering #BigData #SparkDeZeroAExpert
@@ -89,69 +95,7 @@ spark-lab/
 mkdir -p spark-lab/data spark-lab/notebooks && cd spark-lab
 ```
 
-### 4.2 Squelette à compléter
-
-Avant de regarder la solution, essaie de remplir les `______` de mémoire.
-
-```yaml
-x-spark-worker: &worker
-  image: apache/spark:3.5.3
-  command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.______ spark://______:7077
-  environment:
-    SPARK_WORKER_CORES: ______
-    SPARK_WORKER_MEMORY: ______
-  volumes:
-    - ./data:/data
-  depends_on:
-    - spark-master
-  networks:
-    - spark-net
-
-services:
-  spark-master:
-    image: apache/spark:3.5.3
-    hostname: ______
-    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.______
-    ports:
-      - "______:8080"     # Master UI
-      - "7077:7077"       # port du cluster manager
-    volumes:
-      - ./data:/data
-    networks:
-      - spark-net
-
-  spark-worker-1:
-    <<: *worker
-    hostname: spark-worker-1
-    ports: ["8081:8081"]
-
-  spark-worker-2:
-    <<: *worker
-    hostname: spark-worker-2
-    ports: ["8082:8081"]
-
-  jupyter:
-    image: quay.io/jupyter/pyspark-notebook:spark-3.5.3
-    hostname: ______
-    ports:
-      - "8888:8888"       # Jupyter
-      - "______:4040"     # Application UI (driver)
-    environment:
-      JUPYTER_TOKEN: spark
-    volumes:
-      - ./notebooks:/home/jovyan/work
-      - ./data:/data
-    depends_on:
-      - spark-master
-    networks:
-      - spark-net
-
-networks:
-  ______:
-    driver: bridge
-```
-
-### 4.3 Solution
+### 4.2 Solution
 
 <details>
 <summary>Voir le docker-compose.yml complet</summary>
