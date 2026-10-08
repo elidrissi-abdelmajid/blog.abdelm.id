@@ -213,10 +213,5 @@ spark.stop()
 
 ---
 
-**Série « Spark : de 0 à expert »**
-Niveau 1 : **1. Pourquoi Spark ?** ← tu es ici | 2. Environnement | 3. RDD, DataFrame, Dataset
-Niveau 2 : 4. I/O | 5. Transformations | 6. Joins & Windows | 7. SQL & UDF
-Niveau 3 : 8. Architecture | 9. spark-submit | 10. Jobs/Stages | 11. Catalyst
-Niveau 4 : 12. Scheduling | 13. Optimisation | 14. Production
 
 #Spark #ApacheSpark #BigData #DataEngineering #PySpark #Hadoop #LearnSpark #DataEngineer #CloudComputing #SparkDeZeroAExpert
