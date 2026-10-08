@@ -25,6 +25,8 @@ params:
   blog:
     list:
       displayTags: true
+      sortBy: weight
+      sortOrder: asc
 
 menu:
   main:
@@ -33,7 +35,7 @@ menu:
       weight: 1
 
     - name: Blog
-      pageRef: /blog
+      pageRef: /posts
       weight: 2
 
     - name: Projects
