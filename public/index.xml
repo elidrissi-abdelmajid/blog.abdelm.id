@@ -1,41 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Abdelmajid El Idrissi</title>
+    <title>Abdelmajid El Idrissi – Abdelmajid El Idrissi</title>
     <link>http://localhost:1313/blog.abdelm.id/</link>
     <description>Recent content on Abdelmajid El Idrissi</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/blog.abdelm.id/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title></title>
-      <link>http://localhost:1313/blog.abdelm.id/posts/spark/01-pourquoi-spark/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog.abdelm.id/posts/spark/01-pourquoi-spark/</guid>
-      <description>&lt;h2 id=&#34;1--pourquoi-spark--du-big-data-au-calcul-distribué-en-mémoire&#34;&gt;1- Pourquoi Spark ? Du Big Data au calcul distribué en mémoire&lt;/h2&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;sommaire&#34;&gt;Sommaire&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Le problème : quand une machine ne suffit plus&lt;/li&gt;
-&lt;li&gt;Hadoop MapReduce : la première réponse&lt;/li&gt;
-&lt;li&gt;Spark : l&amp;rsquo;idée centrale&lt;/li&gt;
-&lt;li&gt;Pourquoi Spark est plus rapide&lt;/li&gt;
-&lt;li&gt;L&amp;rsquo;écosystème Spark&lt;/li&gt;
-&lt;li&gt;Où tourne Spark ?&lt;/li&gt;
-&lt;li&gt;Quand utiliser (ou non) Spark&lt;/li&gt;
-&lt;li&gt;Squelette à compléter&lt;/li&gt;
-&lt;li&gt;Prochain blog&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;1-le-problème--quand-une-machine-ne-suffit-plus&#34;&gt;1. Le problème : quand une machine ne suffit plus&lt;/h2&gt;
-&lt;p&gt;Une machine a des limites : CPU, RAM, disque. Quand les données dépassent ces limites, deux options :&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/blog.abdelm.id/posts/spark/02-environnement-de-travail/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog.abdelm.id/posts/spark/02-environnement-de-travail/</guid>
-      <description>&lt;p&gt;hello from the other side&lt;/p&gt;</description>
-    </item>
+    
+	  <atom:link href="http://localhost:1313/blog.abdelm.id/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+      
+    
+    
   </channel>
 </rss>

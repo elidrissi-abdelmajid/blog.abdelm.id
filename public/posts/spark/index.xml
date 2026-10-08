@@ -1,0 +1,375 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abdelmajid El Idrissi – Spark</title>
+    <link>http://localhost:1313/blog.abdelm.id/posts/spark/</link>
+    <description>Recent content in Spark on Abdelmajid El Idrissi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="http://localhost:1313/blog.abdelm.id/posts/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog.abdelm.id/posts/spark/01-pourquoi-spark/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog.abdelm.id/posts/spark/01-pourquoi-spark/</guid>
+      <description>
+        
+        
+        &lt;h2 data-hextra-search-id=&#34;1--pourquoi-spark--du-big-data-au-calcul-distribué-en-mémoire&#34;&gt;1- Pourquoi Spark ? Du Big Data au calcul distribué en mémoire&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;1--pourquoi-spark--du-big-data-au-calcul-distribué-en-mémoire&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#1--pourquoi-spark--du-big-data-au-calcul-distribu%c3%a9-en-m%c3%a9moire&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;sommaire&#34;&gt;Sommaire&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;sommaire&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#sommaire&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Le problème : quand une machine ne suffit plus&lt;/li&gt;
+&lt;li&gt;Hadoop MapReduce : la première réponse&lt;/li&gt;
+&lt;li&gt;Spark : l&amp;rsquo;idée centrale&lt;/li&gt;
+&lt;li&gt;Pourquoi Spark est plus rapide&lt;/li&gt;
+&lt;li&gt;L&amp;rsquo;écosystème Spark&lt;/li&gt;
+&lt;li&gt;Où tourne Spark ?&lt;/li&gt;
+&lt;li&gt;Quand utiliser (ou non) Spark&lt;/li&gt;
+&lt;li&gt;Squelette à compléter&lt;/li&gt;
+&lt;li&gt;Prochain blog&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;1-le-problème--quand-une-machine-ne-suffit-plus&#34;&gt;1. Le problème : quand une machine ne suffit plus&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;1-le-problème--quand-une-machine-ne-suffit-plus&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#1-le-probl%c3%a8me--quand-une-machine-ne-suffit-plus&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Une machine a des limites : CPU, RAM, disque. Quand les données dépassent ces limites, deux options :&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Approche&lt;/th&gt;
+					&lt;th&gt;Principe&lt;/th&gt;
+					&lt;th&gt;Limite&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Scale up&lt;/strong&gt; (vertical)&lt;/td&gt;
+					&lt;td&gt;Une machine plus puissante&lt;/td&gt;
+					&lt;td&gt;Coût exponentiel, plafond physique, point de défaillance unique&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Scale out&lt;/strong&gt; (horizontal)&lt;/td&gt;
+					&lt;td&gt;Plusieurs machines ordinaires&lt;/td&gt;
+					&lt;td&gt;Complexité : il faut coordonner le travail&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Le &lt;strong&gt;calcul distribué&lt;/strong&gt; choisit le scale out. Un &lt;strong&gt;cluster&lt;/strong&gt; est un ensemble de machines interconnectées qui travaillent comme un seul système.&lt;/p&gt;
+&lt;p&gt;Exemple : 10 workers × (16 CPU, 64 Go RAM) = &lt;strong&gt;160 CPU et 640 Go RAM&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Le vrai défi n&amp;rsquo;est pas d&amp;rsquo;avoir des machines, c&amp;rsquo;est de :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;découper les données et le calcul,&lt;/li&gt;
+&lt;li&gt;répartir le travail,&lt;/li&gt;
+&lt;li&gt;gérer les pannes,&lt;/li&gt;
+&lt;li&gt;rassembler les résultats.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;C&amp;rsquo;est exactement ce que fait un framework comme Spark.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;2-hadoop-mapreduce--la-première-réponse&#34;&gt;2. Hadoop MapReduce : la première réponse&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;2-hadoop-mapreduce--la-première-réponse&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#2-hadoop-mapreduce--la-premi%c3%a8re-r%c3%a9ponse&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Hadoop a popularisé le Big Data avec deux briques :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HDFS&lt;/strong&gt; : stockage distribué&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MapReduce&lt;/strong&gt; : modèle de calcul en deux phases (Map puis Reduce)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;Lecture HDFS → Map → écriture disque → Shuffle → Reduce → écriture HDFS&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+    aria-label=&#34;Copy code&#34;
+    data-copied-label=&#34;Copied!&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Le problème :&lt;/strong&gt; chaque étape lit et écrit sur &lt;strong&gt;disque&lt;/strong&gt;. Un traitement à plusieurs étapes (ML itératif, pipelines complexes) enchaîne donc des I/O disque très coûteuses. De plus, le modèle Map/Reduce est verbeux et peu adapté aux traitements interactifs.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;3-spark--lidée-centrale&#34;&gt;3. Spark : l&amp;rsquo;idée centrale&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;3-spark--lidée-centrale&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#3-spark--lid%c3%a9e-centrale&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Apache Spark&lt;/strong&gt; est un moteur de calcul distribué, &lt;strong&gt;en mémoire&lt;/strong&gt;, pour le traitement de données à grande échelle. Créé à Berkeley (AMPLab), il est aujourd&amp;rsquo;hui un projet Apache.&lt;/p&gt;
+&lt;p&gt;Spark est souvent présenté comme le &lt;strong&gt;successeur de Hadoop MapReduce&lt;/strong&gt; pour le calcul. Il ne remplace pas le stockage : Spark lit et écrit sur HDFS, S3, ADLS, Kafka, bases de données, etc.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;        Votre code (Python / Scala / SQL / Java / R)
+                         │
+                    Driver Spark
+                         │
+        ┌────────────┬───┴────────┬────────────┐
+     Executor     Executor     Executor     Executor
+     (données en mémoire, tasks en parallèle)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+    aria-label=&#34;Copy code&#34;
+    data-copied-label=&#34;Copied!&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Trois idées à retenir :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Un driver&lt;/strong&gt; coordonne.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Des executors&lt;/strong&gt; exécutent les tasks en parallèle.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Les données restent en mémoire&lt;/strong&gt; entre les étapes quand c&amp;rsquo;est possible.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;4-pourquoi-spark-est-plus-rapide&#34;&gt;4. Pourquoi Spark est plus rapide&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;4-pourquoi-spark-est-plus-rapide&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#4-pourquoi-spark-est-plus-rapide&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Facteur&lt;/th&gt;
+					&lt;th&gt;MapReduce&lt;/th&gt;
+					&lt;th&gt;Spark&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Données intermédiaires&lt;/td&gt;
+					&lt;td&gt;Écrites sur disque&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Gardées en mémoire&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Modèle d&amp;rsquo;exécution&lt;/td&gt;
+					&lt;td&gt;Map → Reduce rigide&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;DAG&lt;/strong&gt; (graphe d&amp;rsquo;opérations)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Optimisation&lt;/td&gt;
+					&lt;td&gt;Aucune globale&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Catalyst&lt;/strong&gt; optimise le plan complet&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Génération de code&lt;/td&gt;
+					&lt;td&gt;Non&lt;/td&gt;
+					&lt;td&gt;Bytecode Java généré (Tungsten)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;API&lt;/td&gt;
+					&lt;td&gt;Bas niveau, verbeuse&lt;/td&gt;
+					&lt;td&gt;DataFrame / SQL, haut niveau&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Cas itératifs (ML)&lt;/td&gt;
+					&lt;td&gt;Très lent&lt;/td&gt;
+					&lt;td&gt;Natif&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;⚠️ &lt;strong&gt;Piège classique (certification)&lt;/strong&gt; : la vraie raison de la performance de Spark est le &lt;strong&gt;calcul et le stockage en mémoire&lt;/strong&gt;, pas les RDD, ni Kubernetes, ni les DataFrames en tant que tels.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+&lt;h3 data-hextra-search-id=&#34;deux-concepts-qui-expliquent-tout&#34;&gt;Deux concepts qui expliquent tout&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;deux-concepts-qui-expliquent-tout&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#deux-concepts-qui-expliquent-tout&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Lazy evaluation&lt;/strong&gt; : Spark ne calcule rien tant qu&amp;rsquo;on n&amp;rsquo;appelle pas une &lt;strong&gt;action&lt;/strong&gt;. Les transformations construisent juste un plan, ce qui permet à Spark de l&amp;rsquo;optimiser avant d&amp;rsquo;exécuter.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tolérance aux pannes&lt;/strong&gt; : Spark mémorise la &lt;strong&gt;lineage&lt;/strong&gt; (l&amp;rsquo;historique des transformations). Si un executor tombe, les partitions perdues sont &lt;strong&gt;recalculées&lt;/strong&gt; ailleurs, sans tout relancer.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;5-lécosystème-spark&#34;&gt;5. L&amp;rsquo;écosystème Spark&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;5-lécosystème-spark&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#5-l%c3%a9cosyst%c3%a8me-spark&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Un seul moteur, plusieurs modules :&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Module&lt;/th&gt;
+					&lt;th&gt;Usage&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Spark Core&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Moteur de base (RDD, scheduling, mémoire)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Spark SQL / DataFrame&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Données structurées, requêtes SQL, optimiseur Catalyst&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Structured Streaming&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Traitement temps réel (Kafka, etc.)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;MLlib&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Machine learning distribué&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;GraphX&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Calcul sur graphes (Scala/Java)&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Langages : &lt;strong&gt;Scala&lt;/strong&gt; (natif), &lt;strong&gt;Python (PySpark)&lt;/strong&gt;, SQL, Java, R.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Spark est écrit en Scala et tourne sur la JVM. PySpark passe par &lt;strong&gt;Py4J&lt;/strong&gt; pour appeler le code JVM : une application PySpark démarre donc toujours une JVM. On creusera ça au Blog 8.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;6-où-tourne-spark-&#34;&gt;6. Où tourne Spark ?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;6-où-tourne-spark-&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#6-o%c3%b9-tourne-spark-&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Spark a besoin d&amp;rsquo;un &lt;strong&gt;cluster manager&lt;/strong&gt; pour obtenir des ressources :&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Cluster manager&lt;/th&gt;
+					&lt;th&gt;Remarque&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Hadoop YARN&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Très répandu en entreprise&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Kubernetes&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Standard cloud-native&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Standalone / Mesos&lt;/td&gt;
+					&lt;td&gt;Moins courants&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;local[*]&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Pour développer et tester sur une machine&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;YARN et Kubernetes couvrent plus de &lt;strong&gt;90 %&lt;/strong&gt; des cas d&amp;rsquo;usage.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;7-quand-utiliser-ou-non-spark&#34;&gt;7. Quand utiliser (ou non) Spark&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;7-quand-utiliser-ou-non-spark&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#7-quand-utiliser-ou-non-spark&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Utiliser Spark&lt;/th&gt;
+					&lt;th&gt;Éviter Spark&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Données de plusieurs Go à To+&lt;/td&gt;
+					&lt;td&gt;Petit jeu de données (pandas suffit)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;ETL / pipelines batch lourds&lt;/td&gt;
+					&lt;td&gt;Requêtes transactionnelles (OLTP)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Jointures et agrégations massives&lt;/td&gt;
+					&lt;td&gt;Latence en millisecondes sur une ligne&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Streaming à grande échelle&lt;/td&gt;
+					&lt;td&gt;Logique purement séquentielle&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;ML distribué&lt;/td&gt;
+					&lt;td&gt;Quand une seule machine suffit&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Règle simple : &lt;strong&gt;si ça tient confortablement dans pandas, n&amp;rsquo;utilisez pas Spark.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;8-squelette-à-compléter&#34;&gt;8. Squelette à compléter&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;8-squelette-à-compléter&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#8-squelette-%c3%a0-compl%c3%a9ter&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Objectif : écrire de mémoire la première session Spark (qu&amp;rsquo;on installera pour de bon au Blog 2).&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; pyspark.sql &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; ______
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;spark &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ______&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;builder
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;appName(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;______&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;master(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;______&amp;#34;&lt;/span&gt;)        &lt;span style=&#34;color:#75715e&#34;&gt;# local[*] pour tester&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;getOrCreate()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;df &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; spark&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;range(______)      &lt;span style=&#34;color:#75715e&#34;&gt;# 1 million de lignes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; df&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;______(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id % 2 = 0&amp;#34;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;______()   &lt;span style=&#34;color:#75715e&#34;&gt;# filtre puis action&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(result)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;spark&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;______()&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+    aria-label=&#34;Copy code&#34;
+    data-copied-label=&#34;Copied!&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; pyspark.sql &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; SparkSession
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;spark &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    SparkSession&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;builder
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;appName(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;blog1&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;master(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;local[*]&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;getOrCreate()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;df &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; spark&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1_000_000&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; df&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;filter(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id % 2 = 0&amp;#34;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;count()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(result)  &lt;span style=&#34;color:#75715e&#34;&gt;# 500000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;spark&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;stop()&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+    aria-label=&#34;Copy code&#34;
+    data-copied-label=&#34;Copied!&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;strong&gt;Question de réflexion :&lt;/strong&gt; dans ce code, quelle ligne déclenche réellement le calcul ? (Indice : &lt;em&gt;lazy evaluation&lt;/em&gt;.)&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 data-hextra-search-id=&#34;points-clés&#34;&gt;Points clés&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;points-clés&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#points-cl%c3%a9s&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Une machine ne suffit plus : on passe au &lt;strong&gt;scale out&lt;/strong&gt; avec un cluster.&lt;/li&gt;
+&lt;li&gt;MapReduce écrit tout sur disque ; Spark garde les données &lt;strong&gt;en mémoire&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Spark = &lt;strong&gt;driver&lt;/strong&gt; (coordonne) + &lt;strong&gt;executors&lt;/strong&gt; (exécutent en parallèle).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lazy evaluation&lt;/strong&gt; + &lt;strong&gt;DAG&lt;/strong&gt; + &lt;strong&gt;Catalyst&lt;/strong&gt; = optimisation globale.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lineage&lt;/strong&gt; = tolérance aux pannes par recalcul.&lt;/li&gt;
+&lt;li&gt;Un moteur, plusieurs modules : SQL, Streaming, MLlib, GraphX.&lt;/li&gt;
+&lt;li&gt;Spark tourne surtout sur &lt;strong&gt;YARN&lt;/strong&gt; ou &lt;strong&gt;Kubernetes&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Série « Spark : de 0 à expert »&lt;/strong&gt;
+Niveau 1 : &lt;strong&gt;1. Pourquoi Spark ?&lt;/strong&gt; ← tu es ici | 2. Environnement | 3. RDD, DataFrame, Dataset
+Niveau 2 : 4. I/O | 5. Transformations | 6. Joins &amp;amp; Windows | 7. SQL &amp;amp; UDF
+Niveau 3 : 8. Architecture | 9. spark-submit | 10. Jobs/Stages | 11. Catalyst
+Niveau 4 : 12. Scheduling | 13. Optimisation | 14. Production&lt;/p&gt;
+&lt;p&gt;#Spark #ApacheSpark #BigData #DataEngineering #PySpark #Hadoop #LearnSpark #DataEngineer #CloudComputing #SparkDeZeroAExpert&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog.abdelm.id/posts/spark/02-environnement-de-travail/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog.abdelm.id/posts/spark/02-environnement-de-travail/</guid>
+      <description>
+        
+        
+        &lt;p&gt;hello from the other side&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

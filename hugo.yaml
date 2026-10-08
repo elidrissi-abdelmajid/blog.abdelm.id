@@ -1,50 +1,65 @@
 baseURL: "https://elidrissi-abdelmajid.github.io/blog.abdelm.id/"
+
 languageCode: "en-us"
 title: "Abdelmajid El Idrissi"
-theme: "PaperMod"
+
+theme: hextra
 
 enableRobotsTXT: true
 
+enableGitInfo: true
+
 params:
-  env: production
-  title: "Abdelmajid El Idrissi"
-  description: "Data Engineer | Big Data | Distributed Systems "
-  author: "Abdelmajid El Idrissi"
+  navbar:
+    displayTitle: true
+    displayLogo: false
 
-  defaultTheme: auto
-  ShowReadingTime: true
-  ShowShareButtons: true
-  ShowPostNavLinks: true
-  ShowBreadCrumbs: true
-  ShowCodeCopyButtons: true
-  ShowToc: true
-  ShowRssButtonInSectionTermList: true
+  theme:
+    default: system
+    displayToggle: true
 
-  homeInfoParams:
-    Title: "Hi, I'm Abdelmajid 👋"
-    Content: |
-      Data Engineer based in Casablanca, Morocco.
+  page:
+    width: wide
+    displayPagination: true
 
-      I write about Data Engineering, Apache Spark, PySpark,
-      Kafka, Airflow, distributed systems and cloud technologies.
-
-  socialIcons:
-    - name: github
-      url: "https://github.com/elidrissi-abdelmajid"
-    - name: linkedin
-      url: "https://www.linkedin.com/in/abdelamjid-elidrissi-45bb38231/?isSelfProfile=true"
+  blog:
+    list:
+      displayTags: true
 
 menu:
   main:
-    - identifier: posts
-      name: Blog
-      url: /posts/
-      weight: 10
-    - identifier: projects
-      name: Projects
-      url: /projects/
-      weight: 20
-    - identifier: about
-      name: About
-      url: /about/
-      weight: 30
+    - name: Documentation
+      pageRef: /docs
+      weight: 1
+
+    - name: Blog
+      pageRef: /blog
+      weight: 2
+
+    - name: Projects
+      pageRef: /projects
+      weight: 3
+
+    - name: About
+      pageRef: /about
+      weight: 4
+
+    - name: Search
+      weight: 5
+      params:
+        type: search
+
+    - name: GitHub
+      url: "https://github.com/elidrissi-abdelmajid"
+      weight: 6
+      params:
+        icon: github
+
+  sidebar:
+    - name: About
+      pageRef: /about
+      weight: 1
+
+    - name: GitHub
+      url: "https://github.com/elidrissi-abdelmajid"
+      weight: 2
