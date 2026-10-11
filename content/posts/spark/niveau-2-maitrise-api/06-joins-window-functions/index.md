@@ -29,7 +29,6 @@ weight: 6
 11. Cas complet : rapprochement ventes / référentiel clients
 12. Checklist avant de mettre une jointure en production
 13. Questions type certification
-14. Prochain blog
 
 ---
 
@@ -543,19 +542,6 @@ Avec des égalités (montants 300, 300, 200) :
 
 ### 8.3 Squelette : top 3 des ventes par client
 
-```python
-w_top = Window.______("client_id").______(col("montant").desc_nulls_last())
-
-top3 = (
-    ventes
-    .withColumn("rn",______().over(w_top))
-    .filter("rn <= 3")
-)
-top3.show()
-```
-
-<details>
-<summary>Solution</summary>
 
 ```python
 w_top = Window.partitionBy("client_id").orderBy(col("montant").desc_nulls_last())
@@ -844,24 +830,15 @@ Ce que ce pipeline garantit :
 
 ---
 
-## 14. Prochain blog
-
-Tu sais maintenant écrire des jointures et des windows robustes avec l'API DataFrame. Mais regarde autour de toi : les analystes, les data scientists et les outils de BI parlent **SQL**. Et ton équipe a des règles métier qu'aucune fonction native ne couvre : valider un IBAN, normaliser un numéro de téléphone marocain, scorer un client.
 
 Questions à garder en tête :
 - Une requête écrite en **SQL** et la même en **DataFrame** donnent-elles le même plan ? (Indice : Blog 1, Catalyst.)
 - Comment exposer un DataFrame comme une **table temporaire** ou une **vue** pour que d'autres puissent l'interroger ?
 - Une **UDF Python** résout ton besoin métier, mais pourquoi peut-elle ralentir un job de façon spectaculaire ? Et que change une **Pandas UDF** ?
 
-**👉 Blog 7 : Spark SQL, UDF et fonctions avancées.**
-Vues temporaires, `spark.sql()`, UDF vs Pandas UDF, fonctions natives d'ordre supérieur (`transform`, `filter`, `aggregate`), et la règle d'or : **natif d'abord, UDF en dernier recours**. On réutilisera `ventes_enrichies` produit dans ce blog.
 
 ---
 
-**Série « Spark : de 0 à expert »**
-Niveau 1 : 1. Pourquoi Spark ? | 2. Environnement | 3. RDD, DataFrame, Dataset
-Niveau 2 : 4. I/O | 5. Transformations | **6. Joins & Windows** ← tu es ici | 7. SQL & UDF
-Niveau 3 : 8. Architecture | 9. spark-submit | 10. Jobs/Stages | 11. Catalyst
-Niveau 4 : 12. Scheduling | 13. Optimisation | 14. Production
+
 
 #Spark #ApacheSpark #PySpark #Joins #WindowFunctions #DataSkew #LearnSpark #DataEngineer #BigData #SparkDeZeroAExpert
