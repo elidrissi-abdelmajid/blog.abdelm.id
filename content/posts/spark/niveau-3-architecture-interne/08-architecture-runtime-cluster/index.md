@@ -595,6 +595,8 @@ Tu connais maintenant les acteurs : driver, cluster manager, executors, conteneu
 - Comment soumettre **la même application** sur trois environnements (dev, recette, prod) sans changer le code ?
 - Que se passe-t-il si tu lances un `--deploy-mode client` depuis un conteneur Docker ou un orchestrateur comme Airflow ?
 
+**👉 Blog 9 : `spark-submit` et deploy modes.**
+Les options, le fichier `spark-defaults.conf`, le packaging des dépendances Python, les scripts de lancement en production, et l'intégration avec un orchestrateur. On reprend la commande de la section 13 et on la rend **reproductible**.
 
 ---
 
