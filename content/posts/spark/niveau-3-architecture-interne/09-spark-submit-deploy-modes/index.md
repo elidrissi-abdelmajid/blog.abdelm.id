@@ -5,7 +5,6 @@ weight: 9
 ---
 
 
-
 > **Temps de lecture :** ~30 min |  
 
 #Spark #ApacheSpark #PySpark #SparkSubmit #DeployMode #YARN #Kubernetes #Airflow #DataEngineering #BigData #Production #SparkDeZeroAExpert
