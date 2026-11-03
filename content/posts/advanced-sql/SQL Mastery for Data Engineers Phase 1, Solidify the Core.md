@@ -1,5 +1,11 @@
 
 
+---
+title: "SQL Mastery for Data Engineers: Phase 1, Solidify the Core"
+description: "Build reliable SQL fundamentals for analytics and data engineering."
+weight: 1
+---
+
 > **Moteurs visés** : Hive, Spark SQL, Impala (stack Cloudera). Les différences de dialecte sont signalées quand elles comptent.
 
 ---
