@@ -5,12 +5,7 @@ weight: 10
 ---
 
 
-
-# Spark : de 0 à expert — Blog 10/14
-## Jobs, Stages, Tasks et Shuffle : lire un job Spark comme un expert
-
-> **Série :** Spark de 0 à expert | **Niveau 3 : Architecture interne** | Blog 10 sur 14
-> **Temps de lecture :** ~30 min | **Prérequis :** Blogs 1 à 9 (surtout les Blogs 3, 5, 6 et 8)
+> **Temps de lecture :** ~30 min |
 
 #Spark #ApacheSpark #PySpark #Jobs #Stages #Tasks #Shuffle #DAG #SparkUI #Performance #DataEngineering #BigData #SparkDeZeroAExpert
 
