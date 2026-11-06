@@ -162,6 +162,7 @@ WHERE EXISTS (
   SELECT 1
   FROM ventes v
   WHERE v.client_id = c.client_id
+  
     AND v.statut = 'VALIDEE'
 );
 ```
