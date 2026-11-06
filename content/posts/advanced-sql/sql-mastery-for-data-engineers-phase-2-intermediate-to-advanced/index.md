@@ -1,5 +1,10 @@
-# SQL pour Data Engineers, Blog 2 : sous-requêtes, CTE, ensembles, dates et premières window functions
+# 
 
+---
+title: "SQL pour Data Engineers, Blog 2 "
+description: "sous-requêtes, CTE, ensembles, dates et premières window functions"
+weight: 3
+---
 > **Série** : SQL, de basique à tech lead · **Niveau** : 2/5 · **Temps de lecture** : ~40 min (avec exécution des exemples)
 > **Moteurs visés** : Hive, Spark SQL, Impala (stack Cloudera). Les différences de dialecte sont signalées quand elles comptent.
 > **Prérequis** : le [Blog 1](blog-01-sql-bases.md) et ses tables `clients` et `ventes` (garde-les).
