@@ -1,9 +1,9 @@
-# 
-
 ---
-title: "SQL pour Data Engineers, Blog 2 "
-description: "sous-requêtes, CTE, ensembles, dates et premières window functions"
-weight: 3
+title: "SQL pour Data Engineers, Blog 2 : SQL intermédiaire"
+description: "Sous-requêtes, CTE, opérations ensemblistes, dates et premières window functions."
+weight: 2
+aliases:
+  - /posts/advanced-sql/sql-mastery-for-data-engineers-phase-2-intermediate-to-advanced/
 ---
 > **Série** : SQL, de basique à tech lead · **Niveau** : 2/5 · **Temps de lecture** : ~40 min (avec exécution des exemples)
 > **Moteurs visés** : Hive, Spark SQL, Impala (stack Cloudera). Les différences de dialecte sont signalées quand elles comptent.
