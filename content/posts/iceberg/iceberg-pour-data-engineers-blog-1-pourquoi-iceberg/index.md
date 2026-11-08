@@ -6,9 +6,8 @@ weight: 1
 
 # Iceberg pour Data Engineers, Blog 1 : pourquoi Iceberg, et audit de ta stack Cloudera
 
-> **Série** : Iceberg · **Niveau** : 1/4 · **Temps de lecture** : ~40 min (avec les expériences proposées)
-> **Moteurs visés** : Hive, Impala, Spark 3 (stack Cloudera CDP). Les écarts de version sont signalés.
-> **Prérequis** : [Blogs SQL 1 à 5]({{< relref "/posts/advanced-sql/sql-pour-data-engineers-blog-5-performance-lire-un-plan" >}}), surtout le Blog 5 (formats, partitionnement, petits fichiers, statistiques). Ce blog en reprend les limites et montre ce qu'Iceberg change.
+
+> **Prérequis** :sql-pour-data-engineers-blog-5-performance-lire-un-plan" >}}), surtout le Blog 5 (formats, partitionnement, petits fichiers, statistiques). Ce blog en reprend les limites et montre ce qu'Iceberg change.
 
 > **À lire avant d'aller plus loin : ce qui a été exécuté, et ce qui ne l'a pas été.**
 > **Exécuté** (en local, sans cluster) : la démonstration Python de la section 4, avec **PyIceberg 0.12.0** et **PySpark 3.5.3**. Les arborescences, les extraits de `metadata.json` et les résultats de cette section sont **copiés de ces exécutions**.
